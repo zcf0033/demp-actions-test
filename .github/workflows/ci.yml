@@ -15,11 +15,11 @@ jobs:
         run: |
           echo "系统：$(uname -a)"
 
-      - name: 配置Node环境（国内镜像）
+      - name: 配置Node环境（淘宝官方镜像）
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          registry-url: shturl.cc/KSLHvNLb3M6RBy3jXKVb
+          registry-url: shturl.cc/cSB0heJHz4sSLiJn8tNQ
 
       - name: 初始化项目并安装依赖
         run: |
