@@ -1,0 +1,6 @@
+{
+  "name": "mock-project",
+  "scripts": {
+    "build": "mkdir dist && echo 'mock build' > dist/index.html"
+  }
+}
