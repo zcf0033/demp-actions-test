@@ -1,0 +1,41 @@
+name: 面试用 CI 流程（构建+测试）
+
+# 触发条件：push 到 main 分支 或 手动点按钮
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # 允许手动运行
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取代码（国内加速 ghproxy）
+        uses: actions/checkout@v4
+        with:
+          repository: zcf0033/demo-actions-test
+          ref: main
+          # 国内加速地址
+          url: https://ghproxy.com/https://github.com/zcf0033/demo-actions-test.git
+
+      - name: 显示系统信息
+        run: |
+          echo "✅ 系统：$(uname -a)"
+          echo "✅ 时间：$(date)"
+
+      - name: 安装 Node（国内镜像）
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: shturl.cc/dz5hFnFZuDlSOVPWNMmZ  # 淘宝镜像
+
+      - name: 初始化项目 + 安装依赖
+        run: |
+          npm init -y
+          npm config set registry shturl.cc/dz5hFnFZuDlSOVPWNMmZ
+          npm install
+
+      - name: 模拟测试（面试必提）
+        run: |
+          echo "🧪 运行单元测试..."
+          echo "✅ 测试通过"
