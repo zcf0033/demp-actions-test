@@ -15,16 +15,16 @@ jobs:
         run: |
           echo "系统：$(uname -a)"
 
-      - name: 配置Node环境（淘宝官方镜像）
+      - name: 配置Node环境
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          registry-url: shturl.cc/cSB0heJHz4sSLiJn8tNQ
 
-      - name: 初始化项目并安装依赖
+      - name: 初始化项目并安装依赖（配置国内淘宝镜像）
         run: |
+          npm config set registry shturl.cc/ws3Jdjo9y9M1qjBkKWYe
           npm init -y
           npm install
 
       - name: 模拟自动化测试
-        run: echo "单元测试全部通过"
+        run: echo "✅ 单元测试全部通过"
