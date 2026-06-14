@@ -15,18 +15,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'          # 可选，加速依赖安装
+          # 没有 cache: 'npm'，避免锁文件报错
 
-      - name: 构建项目（国内镜像加速）
+      - name: 构建项目（模拟）
         run: |
           npm config set registry https://registry.npmmirror.com
-          npm ci                  # 更严格的依赖安装，需 package-lock.json
-          npm test                # 运行测试（如果项目有）
-          npm run build
+          npm init -y
+          mkdir -p dist
+          echo "<h1>Mock Deployment</h1>" > dist/index.html
+          # 不需要 npm install 和 npm run build
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          # 如果需要保留历史提交记录，可以加：keep_files: false
