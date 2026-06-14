@@ -22,7 +22,7 @@ jobs:
 
       - name: 初始化项目并安装依赖（配置国内淘宝镜像）
         run: |
-          npm config set registry shturl.cc/ws3Jdjo9y9M1qjBkKWYe
+          npm config set registry https://registry.npmmirror.com
           npm init -y
           npm install
 
